@@ -27,6 +27,70 @@ const revenueOffers = [
   { goal: "企业线索合作", title: "企业线索", icon: "handshake", desc: "把搜索意图、分类浏览和表单需求转化为销售线索。" }
 ];
 
+const newsThumbs = [
+  "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=640&q=80",
+  "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=640&q=80",
+  "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=640&q=80",
+  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=640&q=80",
+  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=640&q=80",
+  "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=640&q=80"
+];
+
+function news(id, title, summary, category, date, views, thumbIndex = 0) {
+  return {
+    id,
+    title,
+    summary,
+    category,
+    date,
+    views,
+    thumb: newsThumbs[thumbIndex % newsThumbs.length],
+    url: `#news-${id}`
+  };
+}
+
+const dailyNews = [
+  news("0629-01", "AI日报：企业级智能体平台加速落地；国产视频模型开放长镜头生成；多模态搜索进入办公场景", "今日重点关注智能体编排、视频生成和企业知识检索三条主线。平台厂商开始把模型能力包装成可交付流程，内容团队则更关心稳定性、版权边界和成本结构。", "产品", "今天", "18.6K", 0),
+  news("0629-02", "AI日报：开源推理模型刷新中文评测；云厂商下调长上下文价格；AI 浏览器插件迎来团队版", "模型侧继续围绕推理、长上下文和工具调用优化，应用侧则把浏览器、文档和表格作为高频入口，强调从个人效率走向团队协作。", "模型", "1 天前", "21.4K", 1),
+  news("0629-03", "AI日报：代码助手转向全流程研发；设计工具推出品牌素材生成；客服机器人强化质检闭环", "开发、设计和客服三个成熟场景都在从单点能力升级为流程型产品。新的竞争点不再只是生成质量，而是权限、审计、协作和可复用模板。", "应用", "2 天前", "19.8K", 2),
+  news("0629-04", "AI日报：教育平台上线个性化助教；医疗问答模型增加引用校验；电商素材生产进入批量化", "垂直行业正在把 AI 能力嵌入既有业务系统，重点解决可信来源、批量处理和人工复核。真正可落地的产品更强调可控和可追溯。", "行业", "3 天前", "16.2K", 3),
+  news("0629-05", "AI日报：语音模型支持实时同传；音乐生成开放商用授权；播客剪辑工具补齐多语言字幕", "音频赛道从体验尝鲜转向生产工具。实时翻译、声音一致性和授权清晰度成为创作者和企业采购时最关心的三个因素。", "音频", "4 天前", "14.9K", 4),
+  news("0629-06", "AI日报：图像生成平台升级商品图模板；3D 生成加入材质编辑；营销团队开始使用视觉工作流", "视觉 AI 的主流需求正在从单张惊艳图片转向稳定生产。商品图、海报、短视频封面和品牌模板成为商业化最明确的落点。", "图像", "5 天前", "17.3K", 5),
+  news("0629-07", "AI日报：大模型 API 聚合服务增加成本面板；RAG 工具强化权限控制；向量数据库推出轻量套餐", "企业开发者关注点从接入模型转为持续运营，包括成本监控、权限隔离、检索质量和多模型切换。基础设施产品开始主动降低试用门槛。", "开发", "6 天前", "15.7K", 0),
+  news("0629-08", "AI日报：办公套件集成会议纪要代理；表格 AI 支持自动建模；PPT 生成工具强化多人审阅", "办公 AI 正在进入更具体的日常流程。会议、表格、演示和文档之间的上下文流转，会决定工具能否真正提高团队效率。", "办公", "06-22", "22.1K", 1),
+  news("0629-09", "AI日报：AI 搜索产品加入来源评分；学术检索支持批量摘要；知识库问答强调引用复核", "搜索类产品的差异化正在回到信任问题。来源评分、引用追踪和结果复核可以帮助用户把 AI 回答转化为可采纳结论。", "搜索", "06-21", "20.4K", 2),
+  news("0629-10", "AI日报：视频生成模型开放角色一致性；数字人口播进入直播间；短剧团队测试脚本到成片流程", "视频 AI 的商业需求集中在稳定角色、可控镜头和快速改稿。内容团队更愿意采用能融入剪辑、配音和投放流程的工具。", "视频", "06-20", "18.8K", 3),
+  news("0629-11", "AI日报：提示词平台转向工作流市场；智能体模板覆盖销售场景；低代码应用加入审批节点", "提示词正在从单条文本资产变成可售卖流程。销售、客服、运营和研究模板更容易体现业务价值，也更适合形成会员权益。", "智能体", "06-19", "13.5K", 4),
+  news("0629-12", "AI日报：内容检测工具更新图片识别；版权合规服务增加训练数据声明；平台加强 AI 标识", "随着生成内容规模增加，检测、标识和授权成为平台治理基础能力。企业侧更需要一套可解释的审核流程，而不是单一分数。", "合规", "06-18", "12.7K", 5),
+  news("0629-13", "AI日报：模型评测站加入真实任务榜；推理成本成为采购指标；开源社区关注小模型部署", "评测正在从通用分数走向真实任务表现。对于企业而言，速度、成本、稳定性和部署方式常常比单项榜单排名更重要。", "评测", "06-17", "15.2K", 0),
+  news("0629-14", "AI日报：跨境营销工具支持多语种素材；独立站接入 AI 导购；广告平台测试自动创意组合", "营销 AI 的价值逐渐从文案生成扩展到素材组合、受众匹配和落地页优化。闭环数据会成为产品留存的关键。", "营销", "06-16", "16.9K", 1),
+  news("0629-15", "AI日报：企业知识库支持部门空间；客服系统打通工单摘要；内部搜索开始接入权限图谱", "企业知识管理进入精细化阶段。权限、更新频率和答案来源会影响用户是否愿意把 AI 作为正式工作入口。", "企业", "06-15", "14.1K", 2),
+  news("0629-16", "AI日报：编程智能体加入移动端任务看板；PR 审查工具支持风险解释；测试生成强调覆盖率", "研发 AI 正在覆盖需求拆解、编码、测试和审查。团队采用时会更看重变更可控性、上下文理解和现有流程兼容。", "编程", "06-14", "23.6K", 3),
+  news("0629-17", "AI日报：AI 硬件厂商更新端侧助手；可穿戴设备强化语音交互；本地模型强调隐私卖点", "端侧 AI 的产品叙事正在从炫技转向陪伴、记录和隐私。真正的挑战是续航、响应速度和与手机生态的协同。", "硬件", "06-13", "11.8K", 4),
+  news("0629-18", "AI日报：投融资关注行业 Agent；数据服务商推出合成数据方案；企业采购更重视 ROI", "资本与客户都在寻找更清晰的商业回报。能绑定行业流程、降低人力成本或提升成交效率的 AI 产品更容易获得预算。", "商业", "06-12", "19.5K", 5),
+  news("0629-19", "AI日报：机器人公司展示多任务操作；仿真平台开放训练接口；具身智能仍等待成本拐点", "机器人和具身智能的进展仍以研发平台和试点场景为主。短期机会集中在数据、仿真、远程操作和垂直行业样板间。", "机器人", "06-11", "13.2K", 0),
+  news("0629-20", "AI日报：浏览器助手开始理解网页流程；个人知识库支持自动归档；效率工具围绕任务闭环竞争", "个人效率产品从问答走向行动，浏览、记录、归档和提醒逐渐连成闭环。谁能减少用户在工具之间切换，谁就更有机会留住用户。", "效率", "06-10", "17.6K", 1)
+];
+
+const hotNews = [
+  "企业智能体从演示走向交付，流程编排能力成为采购重点",
+  "长上下文价格继续下探，中小团队开始重估知识库方案",
+  "国产视频模型竞争升级，角色一致性和镜头可控性被反复比较",
+  "AI 搜索进入引用复核阶段，来源可信度成为核心卖点",
+  "代码助手产品转向任务看板，研发流程集成成为新战场",
+  "电商商品图批量生成需求升温，品牌模板和审核流更受欢迎",
+  "实时语音同传进入会议场景，多语言团队开始小范围试用",
+  "行业 Agent 获得更多融资关注，垂直流程 ROI 成为关键词",
+  "内容合规产品升级 AI 标识能力，平台治理需求持续增加",
+  "办公 AI 从单点生成走向跨文档协作，会议和表格成为入口",
+  "模型评测榜单增加真实任务维度，采购决策更关注成本曲线",
+  "端侧助手强调隐私和低延迟，可穿戴设备继续探索高频场景"
+].map((title, index) => ({
+  id: `hot-${index + 1}`,
+  title,
+  url: `#news-hot-${index + 1}`
+}));
+
 function tool(id, name, website, category, sub, summary, tags, price, flags = {}) {
   return {
     id,
@@ -145,6 +209,7 @@ const state = {
   query: "",
   selectedId: "deepseek",
   drawerOpen: false,
+  newsPage: 1,
   filters: {},
   saved: new Set(JSON.parse(localStorage.getItem("savedTools") || "[]")),
   compare: []
@@ -158,6 +223,10 @@ const mobileCategoryNav = $("#mobileCategoryNav");
 const hotTools = $("#hotTools");
 const categorySections = $("#categorySections");
 const offerGrid = $("#offerGrid");
+const newsPage = $("#newsPage");
+const dailyNewsList = $("#dailyNewsList");
+const hotNewsList = $("#hotNewsList");
+const newsPagination = $("#newsPagination");
 const toolDrawer = $("#toolDrawer");
 const toast = $("#toast");
 const leadModal = $("#leadModal");
@@ -209,6 +278,23 @@ function matchTool(toolItem) {
     toolItem.price,
     category?.name,
     getDomain(toolItem.website)
+  ].join(" ").toLowerCase();
+  return query.split(/\s+/).every((part) => haystack.includes(part));
+}
+
+function isNewsView() {
+  return window.location.hash === "#news";
+}
+
+function matchNews(newsItem) {
+  if (!state.query.trim()) return true;
+  const query = state.query.trim().toLowerCase();
+  const haystack = [
+    newsItem.title,
+    newsItem.summary,
+    newsItem.category,
+    newsItem.date,
+    newsItem.views
   ].join(" ").toLowerCase();
   return query.split(/\s+/).every((part) => haystack.includes(part));
 }
@@ -323,6 +409,64 @@ function renderOffers() {
     .join("");
 }
 
+function renderNews() {
+  const filtered = dailyNews.filter(matchNews);
+  const pageSize = 10;
+  const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
+  state.newsPage = Math.min(state.newsPage, pageCount);
+  const start = (state.newsPage - 1) * pageSize;
+  const pageItems = filtered.slice(start, start + pageSize);
+
+  dailyNewsList.innerHTML = pageItems.length
+    ? pageItems.map((item) => `
+      <a class="news-card" href="${item.url}" data-news-open="${item.id}">
+        <div class="news-thumb">
+          <img src="${item.thumb}" alt="${escapeHtml(item.category)} 资讯封面" loading="lazy" />
+          <span class="news-badge">${escapeHtml(item.category)}</span>
+        </div>
+        <div class="news-card-body">
+          <h2>${escapeHtml(item.title)}</h2>
+          <p>${escapeHtml(item.summary)}</p>
+          <div class="news-meta">
+            <span>${icon("schedule", "inline-icon")}${escapeHtml(item.date)}</span>
+            <span>${icon("leaderboard", "inline-icon")}${escapeHtml(item.views)}</span>
+          </div>
+        </div>
+      </a>
+    `).join("")
+    : `<div class="section-empty">没有找到匹配的 AI 日报，换个关键词试试</div>`;
+
+  hotNewsList.innerHTML = hotNews
+    .filter((item) => {
+      if (!state.query.trim()) return true;
+      return item.title.toLowerCase().includes(state.query.trim().toLowerCase());
+    })
+    .slice(0, 12)
+    .map((item, index) => `
+      <a class="news-rank-item" href="${item.url}" data-news-open="${item.id}">
+        <span class="news-rank-index">#${index + 1}</span>
+        <span>${escapeHtml(item.title)}</span>
+      </a>
+    `)
+    .join("") || `<div class="section-empty">暂无匹配热点</div>`;
+
+  newsPagination.innerHTML = Array.from({ length: pageCount }, (_, index) => {
+    const page = index + 1;
+    const active = page === state.newsPage ? " is-active" : "";
+    return `<button class="news-page-button${active}" type="button" data-news-page="${page}" aria-label="第 ${page} 页">${page}</button>`;
+  }).join("");
+}
+
+function updateViewMode() {
+  const newsActive = isNewsView();
+  document.querySelector(".app-shell")?.classList.toggle("is-news", newsActive);
+  newsPage.hidden = !newsActive;
+  if (newsActive) {
+    state.drawerOpen = false;
+    renderDrawer();
+  }
+}
+
 function renderDrawer() {
   if (!state.drawerOpen) {
     toolDrawer.classList.remove("is-open");
@@ -365,8 +509,10 @@ function renderDrawer() {
 }
 
 function renderAll() {
+  updateViewMode();
   renderHotTools();
   renderCategorySections();
+  renderNews();
   renderDrawer();
   setActiveNav();
 }
@@ -386,6 +532,7 @@ function syncSearchInputs(value) {
 
 function setQuery(value) {
   state.query = value;
+  state.newsPage = 1;
   syncSearchInputs(value);
   window.clearTimeout(setQuery.timer);
   setQuery.timer = window.setTimeout(renderAll, 120);
@@ -444,9 +591,32 @@ function setActiveNav() {
   $$(".category-link").forEach((link) => {
     link.classList.toggle("is-active", link.dataset.navCategory === categoryId);
   });
+  $$("[data-top-nav]").forEach((link) => {
+    const nav = link.dataset.topNav;
+    const active =
+      (nav === "news" && hash === "#news") ||
+      (nav === "tools" && (hash === "#hot" || hash.startsWith("#category-"))) ||
+      (nav === "home" && (!hash || hash === "#main" || hash === "#"));
+    link.classList.toggle("is-active", active);
+  });
 }
 
 document.addEventListener("click", (event) => {
+  const newsPageButton = event.target.closest("[data-news-page]");
+  if (newsPageButton) {
+    state.newsPage = Number(newsPageButton.dataset.newsPage);
+    renderNews();
+    newsPage?.scrollIntoView({ block: "start" });
+    return;
+  }
+
+  const newsOpen = event.target.closest("[data-news-open]");
+  if (newsOpen) {
+    event.preventDefault();
+    showToast("资讯详情页已预留，下一版可接 CMS 或原创长文页");
+    return;
+  }
+
   const saveButton = event.target.closest("[data-save]");
   if (saveButton) {
     event.stopPropagation();
@@ -525,7 +695,7 @@ document.addEventListener("keydown", (event) => {
 
 $("#heroSearchButton").addEventListener("click", () => {
   renderAll();
-  $("#hot")?.scrollIntoView({ block: "start" });
+  (isNewsView() ? newsPage : $("#hot"))?.scrollIntoView({ block: "start" });
 });
 
 $("#openSubmit").addEventListener("click", () => openLeadModal("免费提交工具"));
@@ -538,7 +708,7 @@ $("#mobileSearchToggle").addEventListener("click", () => {
   if (mobileSearchPanel.classList.contains("is-open")) mobileSearch.focus();
 });
 $("#submitLead").addEventListener("click", () => showToast("合作需求已记录，下一版可接入 CRM、支付或表单服务"));
-window.addEventListener("hashchange", setActiveNav);
+window.addEventListener("hashchange", renderAll);
 
 renderCategoryNav(categoryNav);
 renderCategoryNav(mobileCategoryNav);
