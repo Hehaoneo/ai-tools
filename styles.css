@@ -561,26 +561,6 @@ p {
   right: 12px;
 }
 
-.hero-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.hero-metrics span {
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface-soft);
-}
-
-.hero-metrics strong {
-  color: var(--ink);
-}
-
 .tool-section,
 .growth-band {
   margin-bottom: 54px;
@@ -1119,10 +1099,6 @@ p {
 
   .hero-search input {
     min-height: 54px;
-  }
-
-  .hero-metrics {
-    justify-content: flex-start;
   }
 
   .section-heading {
