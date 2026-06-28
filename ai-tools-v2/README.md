@@ -23,6 +23,10 @@ python3 -m http.server 4173
 - 统一合作表单，本地模拟提交反馈
 - 响应式布局、键盘焦点、弹窗关闭和 reduced-motion 支持
 
+## 部署状态
+
+- 2026-06-28: 同步发布 GitHub Pages 与 Netlify，校验版本 `d0c442e`。
+
 ## 商业闭环建议
 
 - 把提交工具和 Featured 推荐位接入表单服务或 CRM，形成厂商线索池。
