@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="AI工具雷达是面向中文用户的 AI 工具市场、榜单、工作流指南和厂商增长平台。"
+    />
+    <title>AI工具雷达 - 国内领先的 AI 工具市场</title>
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <a class="brand" href="#main" aria-label="AI工具雷达首页">
+        <span class="brand-mark">AI</span>
+        <span class="brand-name">AI工具雷达</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="主导航">
+        <a class="is-active" href="#tools">工具库</a>
+        <a href="#rankings">榜单</a>
+        <a href="#workflows">工作流</a>
+        <a href="#reviews">评测</a>
+        <a href="#growth">厂商增长</a>
+      </nav>
+
+      <div class="header-search" role="search">
+        <label class="sr-only" for="globalSearch">搜索工具、场景或工作流</label>
+        <input id="globalSearch" type="search" autocomplete="off" placeholder="搜索工具、场景或工作流" />
+      </div>
+
+      <div class="header-actions">
+        <button class="button button-ghost" id="openSubmit" type="button">提交工具</button>
+        <button class="button button-primary" id="joinButton" type="button">登录 / 注册</button>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="切换深色模式">夜</button>
+      </div>
+    </header>
+
+    <main class="page-shell" id="main">
+      <section class="main-column">
+        <section class="editorial-hero" aria-labelledby="heroTitle">
+          <div class="hero-kicker">
+            <span>每周更新</span>
+            <span>精选可用工具与真实工作流</span>
+          </div>
+          <div class="hero-title-row">
+            <div>
+              <h1 id="heroTitle">本周值得试的 AI 工具</h1>
+              <p>
+                从工具收录、榜单、评测到工作流指南，帮用户更快选对 AI 工具，也帮厂商获得更高意向的曝光和线索。
+              </p>
+            </div>
+            <a class="text-link" href="#tools">查看全部工具</a>
+          </div>
+        </section>
+
+        <section class="featured-grid" id="tools" aria-label="精选 AI 工具">
+          <div id="featuredTools" class="featured-tools"></div>
+        </section>
+
+        <section class="section-block" aria-labelledby="categoryTitle">
+          <div class="section-heading">
+            <div>
+              <h2 id="categoryTitle">按场景找工具</h2>
+              <p>先选业务场景，再看工具、教程、替代方案和商业推荐位。</p>
+            </div>
+            <a class="text-link" href="#allCategories">查看全部场景</a>
+          </div>
+          <div class="category-grid" id="categoryGrid"></div>
+        </section>
+
+        <section class="section-block" id="workflows" aria-labelledby="workflowTitle">
+          <div class="section-heading">
+            <div>
+              <h2 id="workflowTitle">热门工作流指南</h2>
+              <p>精选可复用的实战流程，开箱即用，结果可复制。</p>
+            </div>
+            <a class="text-link" href="#workflowTitle">查看全部</a>
+          </div>
+          <div class="workflow-grid" id="workflowGrid"></div>
+        </section>
+
+        <section class="conversion-strip" id="growth" aria-label="商业转化入口">
+          <article>
+            <span class="conversion-icon">会员</span>
+            <div>
+              <strong>会员订阅</strong>
+              <p>深度评测、价格监控与专属工具库。</p>
+            </div>
+            <button class="button button-outline" type="button" data-plan="会员订阅">立即订阅</button>
+          </article>
+          <article>
+            <span class="conversion-icon">报告</span>
+            <div>
+              <strong>获取行业报告</strong>
+              <p>100+ 行业数据与趋势报告。</p>
+            </div>
+            <button class="button button-outline" type="button" data-plan="行业报告">免费获取</button>
+          </article>
+          <article>
+            <span class="conversion-icon">社群</span>
+            <div>
+              <strong>加入社群</strong>
+              <p>10万+ AI 从业者交流与资源。</p>
+            </div>
+            <button class="button button-outline" type="button" data-plan="加入社群">申请加入</button>
+          </article>
+          <article>
+            <span class="conversion-icon">日报</span>
+            <div>
+              <strong>每日精选</strong>
+              <p>每天 10 款优质 AI 工具推送。</p>
+            </div>
+            <button class="button button-outline" type="button" data-plan="每日精选">立即订阅</button>
+          </article>
+        </section>
+      </section>
+
+      <aside class="side-column" aria-label="热榜和增长模块">
+        <section class="panel" id="rankings">
+          <div class="panel-header">
+            <h2>AI工具热榜</h2>
+            <button class="small-link" type="button">更多榜单</button>
+          </div>
+          <div class="tab-row" aria-label="榜单周期">
+            <button class="tab is-active" data-rank-period="week" type="button">周榜</button>
+            <button class="tab" data-rank-period="month" type="button">月榜</button>
+            <button class="tab" data-rank-period="all" type="button">总榜</button>
+          </div>
+          <div id="rankingList" class="ranking-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>最新收录</h2>
+            <button class="small-link" type="button">更多</button>
+          </div>
+          <div id="latestList" class="latest-list"></div>
+        </section>
+
+        <section class="growth-panel">
+          <div class="growth-copy">
+            <h2>厂商增长入口</h2>
+            <p>让更多用户发现并使用你的 AI 产品。</p>
+          </div>
+          <ul>
+            <li><strong>提交工具</strong><span>免费收录，提升曝光</span></li>
+            <li><strong>购买 Featured</strong><span>首页推荐，精准触达用户</span></li>
+            <li><strong>企业线索合作</strong><span>获取高质量客户搜索</span></li>
+            <li><strong>发布评测/案例</strong><span>增强品牌信任与转化</span></li>
+          </ul>
+          <button class="button button-primary" id="openSponsor" type="button">立即合作</button>
+          <button class="small-link growth-more" type="button">了解更多方案</button>
+        </section>
+      </aside>
+    </main>
+
+    <section class="tool-drawer" id="toolDrawer" aria-live="polite" aria-label="工具详情预览"></section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog class="vendor-modal" id="vendorModal" aria-labelledby="modalTitle">
+      <form method="dialog">
+        <div class="modal-header">
+          <div>
+            <p>厂商增长合作</p>
+            <h2 id="modalTitle">提交工具或购买推广</h2>
+          </div>
+          <button class="icon-button" value="close" aria-label="关闭弹窗" type="submit">×</button>
+        </div>
+        <div class="modal-grid">
+          <label>
+            工具名称
+            <input type="text" placeholder="例如：你的 AI 产品" />
+          </label>
+          <label>
+            官网链接
+            <input type="url" placeholder="https://example.com" />
+          </label>
+          <label>
+            合作目标
+            <select id="leadGoal">
+              <option>付费收录</option>
+              <option>Featured 推广</option>
+              <option>企业线索</option>
+              <option>行业报告赞助</option>
+              <option>会员/社群合作</option>
+            </select>
+          </label>
+          <label>
+            联系方式
+            <input type="email" placeholder="name@company.com" />
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button class="button button-ghost" value="cancel" type="submit">稍后再说</button>
+          <button class="button button-primary" id="submitLead" value="submit" type="submit">提交合作需求</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
