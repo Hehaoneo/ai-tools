@@ -472,12 +472,19 @@ p {
   align-items: center;
   min-height: 42px;
   padding: 0 12px;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   color: #172b4d;
   font-weight: 800;
+  transition: background var(--motion), border-color var(--motion), color var(--motion);
 }
 
-.category-link:hover,
+.category-link:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
 .category-link.is-active {
   background: var(--primary);
   color: #fff;
@@ -494,7 +501,10 @@ p {
   font-size: 19px;
 }
 
-.category-link:hover .category-icon,
+.category-link:hover .category-icon {
+  background: color-mix(in srgb, var(--primary) 18%, white);
+}
+
 .category-link.is-active .category-icon {
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
@@ -505,7 +515,6 @@ p {
   font-size: 12px;
 }
 
-.category-link:hover .category-count,
 .category-link.is-active .category-count {
   color: rgba(255, 255, 255, 0.78);
 }
