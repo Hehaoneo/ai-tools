@@ -1,4 +1,5 @@
 const categories = [
+  { id: "hot", name: "热门推荐", icon: "leaderboard", subs: [], isHot: true },
   { id: "ai-office", name: "AI办公工具", icon: "business_center", subs: ["AI语言翻译", "AI表格数据处理", "AI效率提升", "AI思维导图", "AI文档工具", "AI幻灯片和演示", "AI会议工具", "AI法律助手", "AI招聘求职"] },
   { id: "ai-video", name: "AI视频工具", icon: "movie", subs: ["AI视频生成", "AI视频剪辑", "数字人视频", "字幕翻译", "视频素材"] },
   { id: "ai-code", name: "AI编程工具", icon: "code_blocks", subs: ["代码生成", "代码审查", "IDE助手", "DevOps", "低代码"] },
@@ -224,9 +225,12 @@ function toolsForCategory(categoryId) {
 function renderCategoryNav(target) {
   target.innerHTML = categories
     .map((category) => {
-      const count = tools.filter((toolItem) => toolItem.category === category.id).length;
+      const count = category.isHot
+        ? tools.filter((toolItem) => toolItem.featured || toolItem.score >= 8.8).length
+        : tools.filter((toolItem) => toolItem.category === category.id).length;
+      const href = category.isHot ? "#hot" : `#category-${category.id}`;
       return `
-        <a class="category-link" href="#category-${category.id}" data-nav-category="${category.id}">
+        <a class="category-link" href="${href}" data-nav-category="${category.id}">
           <span class="category-icon">${icon(category.icon)}</span>
           <span>${category.name}</span>
           <span class="category-count">${count}</span>
@@ -279,6 +283,7 @@ function renderHotTools() {
 
 function renderCategorySections() {
   categorySections.innerHTML = categories
+    .filter((category) => !category.isHot)
     .map((category) => {
       const list = toolsForCategory(category.id);
       const activeSub = state.filters[category.id] || "";
@@ -359,11 +364,6 @@ function renderDrawer() {
   `;
 }
 
-function renderCounts() {
-  $("#toolCount").textContent = tools.length;
-  $("#categoryCount").textContent = categories.length;
-}
-
 function renderAll() {
   renderHotTools();
   renderCategorySections();
@@ -439,9 +439,10 @@ function closeMobileMenu() {
 }
 
 function setActiveNav() {
-  const hash = window.location.hash.replace("#category-", "");
+  const hash = window.location.hash;
+  const categoryId = hash === "#hot" ? "hot" : hash.replace("#category-", "");
   $$(".category-link").forEach((link) => {
-    link.classList.toggle("is-active", link.dataset.navCategory === hash);
+    link.classList.toggle("is-active", link.dataset.navCategory === categoryId);
   });
 }
 
@@ -542,5 +543,4 @@ window.addEventListener("hashchange", setActiveNav);
 renderCategoryNav(categoryNav);
 renderCategoryNav(mobileCategoryNav);
 renderOffers();
-renderCounts();
 renderAll();
